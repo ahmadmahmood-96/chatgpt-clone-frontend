@@ -8,7 +8,7 @@ import {
   Waypoints,
 } from "lucide-react";
 import { SidebarButton } from "./SidebarButton";
-import { Avatar } from "antd";
+import { Avatar, Spin } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { SidebarFooter } from "./SidebarFooter";
 
@@ -77,22 +77,26 @@ export const Sidebar = ({
       />
 
       {/* Threads list */}
-      <div className="flex-1 overflow-y-auto mt-2">
-        {threads.map((thread: Thread) => (
-          <div
-            key={thread.id}
-            onClick={() => setSelectedThread(thread)}
-            className={`p-2 rounded-lg font-light cursor-pointer mb-1 text-[#9C9C9C] truncate ${
-              selectedThread?.id === thread.id
-                ? "bg-[#525252] text-white"
-                : "hover:bg-gray-700"
-            }`}
-            title={thread.title}
-          >
-            {!sidebarCollapsed ? thread.title : thread.title[0]}
-          </div>
-        ))}
-      </div>
+      {threads.length > 0 ? (
+        <div className="flex-1 overflow-y-auto mt-2">
+          {threads.map((thread: Thread) => (
+            <div
+              key={thread.id}
+              onClick={() => setSelectedThread(thread)}
+              className={`p-2 rounded-lg font-light cursor-pointer mb-1 text-[#9C9C9C] truncate ${
+                selectedThread?.id === thread.id
+                  ? "bg-[#525252] text-white"
+                  : "hover:bg-gray-700"
+              }`}
+              title={thread.title}
+            >
+              {!sidebarCollapsed ? thread.title : thread.title[0]}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <Spin className="mt-10" />
+      )}
 
       {/* ✅ User Info Section */}
       <SidebarFooter user={user} sidebarCollapsed={sidebarCollapsed} />
