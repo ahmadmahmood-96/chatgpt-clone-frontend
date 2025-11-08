@@ -1,0 +1,42 @@
+{
+  "name": "chatgpt-clone",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.7",
+    "@supabase/supabase-js": "^2.80.0",
+    "antd": "^5.19.3",
+    "axios": "^1.10.0",
+    "dayjs": "^1.11.13",
+    "lucide-react": "^0.405.0",
+    "mailgun-js": "^0.22.0",
+    "next": "14.2.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-icons": "^5.5.0",
+    "react-intl": "^7.1.11",
+    "react-query": "^3.39.3",
+    "react-redux": "^9.1.2",
+    "react-toastify": "^10.0.5",
+    "sharp": "^0.33.4",
+    "swr": "^2.3.6"
+  },
+  "devDependencies": {
+    "@types/mailgun-js": "^0.22.18",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "daisyui": "^4.12.10",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.4",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
