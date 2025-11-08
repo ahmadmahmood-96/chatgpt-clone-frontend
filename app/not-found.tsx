@@ -9,7 +9,7 @@ export default function PageNotFound() {
   return (
     <>
       <Result
-        className="my-10 flex justify-center items-center flex-col"
+        className="bg-gray-400 w-screen h-screen"
         status="404"
         title="404"
         subTitle="Sorry, the page you visited does not exist."
