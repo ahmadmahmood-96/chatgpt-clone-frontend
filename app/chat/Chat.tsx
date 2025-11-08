@@ -49,7 +49,6 @@ export default function ChatPage() {
   // Fetch threads from backend
   useEffect(() => {
     if (!user) return;
-    console.log("data", user.id);
     const fetchThreads = async () => {
       try {
         const res = await client.get(`/chat/threads?userId=${user.id}`);
@@ -203,9 +202,15 @@ export default function ChatPage() {
                 </div>
 
                 {/* Input box centered under logo */}
-                <div className="mt-8 sm:w-[500px] md:w-[600px] lg:w-[700px] xl:w-[700px] max-w-full">
-                  {ChatInput}
-                </div>
+                {isTyping ? (
+                  <div className="mt-10">
+                    <TypingIndicator />
+                  </div>
+                ) : (
+                  <div className="mt-8 sm:w-[500px] md:w-[600px] lg:w-[700px] xl:w-[700px] max-w-full">
+                    {ChatInput}
+                  </div>
+                )}
               </>
             ) : (
               <>
