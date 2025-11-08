@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Divider, message, Checkbox } from "antd";
+import { Divider, message, Checkbox, Spin } from "antd";
 import { supabase } from "@/utils/supabaseClient";
 
 export default function RegisterPage() {
@@ -105,7 +105,7 @@ export default function RegisterPage() {
                 : "hover:bg-buttonHover"
             }`}
           >
-            {loading ? "Signing up..." : "Signup"}
+            {loading ? <Spin size="small" /> : "Signup"}
           </button>
 
           {/* Divider with "Or" */}
