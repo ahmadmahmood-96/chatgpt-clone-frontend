@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Divider, message } from "antd";
+import { Divider, message, Spin } from "antd";
 import { supabase } from "@/utils/supabaseClient";
 import LoginPageWrapper from "../components/PageWrapper";
 
@@ -10,19 +10,24 @@ export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    // Signing in using the Supabase
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-    if (error)
+
+    if (error) {
       message.error(error.message || "Please enter correct email or password");
-    else {
+    } else {
       message.success("Logged in successfully!");
       router.push("/chat");
     }
+    setLoading(false); // hide loader
   };
 
   return (
@@ -30,7 +35,6 @@ export default function LoginPage() {
       <div className="flex min-h-screen bg-primaryBackground text-white">
         {/* Left side - Logo + text + Login form */}
         <div className="w-1/2 flex flex-col items-center justify-center space-y-6">
-          {/* Logo and text side by side */}
           <div className="flex items-center space-x-4 mb-4">
             <div className="relative w-20 h-20">
               <Image
@@ -43,7 +47,6 @@ export default function LoginPage() {
             <h2 className="text-2xl font-bold">Turing Tech Test</h2>
           </div>
 
-          {/* Login form */}
           <form
             onSubmit={handleLogin}
             className="p-8 bg-primaryBackground border border-gray-600 rounded-2xl w-[454px] flex flex-col justify-center space-y-4"
@@ -66,19 +69,19 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+
             <button
               type="submit"
-              className="w-full p-2 text-primaryText bg-buttonColor rounded hover:bg-buttonHover transition-colors"
+              className="w-full p-2 text-primaryText bg-buttonColor rounded hover:bg-buttonHover transition-colors flex items-center justify-center"
+              disabled={loading}
             >
-              Login
+              {loading ? <Spin size="small" /> : "Login"}
             </button>
 
-            {/* Divider with "Or" */}
             <Divider style={{ borderColor: "#525252" }}>
               <span className="text-white font-light">Or</span>
             </Divider>
 
-            {/* Social login buttons */}
             <div className="flex flex-col gap-3">
               <button
                 type="button"
@@ -86,7 +89,7 @@ export default function LoginPage() {
               >
                 <div className="relative w-5 h-5 mr-2">
                   <Image
-                    src="/google-logo.png" // replace with Google logo path
+                    src="/google-logo.png"
                     alt="Google"
                     fill
                     style={{ objectFit: "contain" }}
@@ -101,7 +104,7 @@ export default function LoginPage() {
               >
                 <div className="relative w-5 h-5 mr-2">
                   <Image
-                    src="/apple-logo.png" // replace with Apple logo path
+                    src="/apple-logo.png"
                     alt="Apple"
                     fill
                     style={{ objectFit: "contain" }}
