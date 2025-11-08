@@ -1,4 +1,4 @@
-## Hikar
+## ChatGPT Clone Frontend
 
 First, run the development server:
 
@@ -11,6 +11,12 @@ pnpm dev
 # or
 bun dev
 ```
+
+.env example:
+
+NEXT_PUBLIC_SUPABASE_URL=<YOUR_SUPABASE_URL>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<YOUR_SUPABASE_ANON_KEY>
+NEXT_PUBLIC_API_URL<YOUR_BACKEND_URL>
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
